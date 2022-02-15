@@ -1,0 +1,26 @@
+{
+  "name": "paystack_module",
+  "version": "1.0.0",
+  "description": "Implementing Paystack with Postgres DB",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Paystack",
+    "node.js",
+    "Postgresql"
+  ],
+  "author": "Obidike Uchenna",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "lodash": "^4.17.21",
+    "pg": "^8.7.3",
+    "pug": "^3.0.2",
+    "request": "^2.88.2",
+    "sequelize": "^6.16.1"
+  }
+}

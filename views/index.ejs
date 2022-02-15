@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paystack Payment</title>
+</head>
+<body>
+  <div>
+    <form name="myForm" action="/api/paystack/payment" method="post">
+      <div class="form-control">
+        <label for="name">Full Name:</label>
+        <input type="text" name="name" id="name" placeholder="Enter Fullname">
+      </div>
+
+      <div class="form-control">
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" placeholder="Enter email">
+      </div>
+
+      <div class="form-control">
+        <label for="amount">Amount:</label>
+        <select  name="amount" id="amount">
+          <option value="Select an Amount" disabled></option>
+          <option value="1500"></option>
+          <option value="2000"></option>
+          <option value="5000"></option>
+      </div>
+      <button type="submit">Sow Seed</button>
+    </form>
+  </div>
+</body>
+</html>
