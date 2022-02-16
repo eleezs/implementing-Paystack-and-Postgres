@@ -47,36 +47,44 @@ app.post('/api/paystack/payment', (req, res) => {
   initializePayment(form, (error, body) => {
     if (error) {
       console.log(error)
-      return
+      return res.redirect('/error');
     }
-    let response = JSON.parse(body);
+     response = JSON.parse(body);
+     console.log(response)
     res.redirect(response.data.authorization_url)
   });
 });
 
 app.get('/paystack/callback', async(req, res) => {
-  const ref = req.query.reference;
-  verifyPayment(ref, async(error, body) =>{
+  try {
+    const ref = req.query.reference;
+    console.log(ref)
+   verifyPayment(ref, (error, body) =>{
     if(error) {
       console.log(error)
-      return res.redirect('/error')
+      // return res.redirect('/error')
     }
     response =JSON.parse(body);
+    console.log(response)
 
     const_data = _.at(response.data, ['reference', 'amount','customer.email','metadata.name']);
-    [reference, amount, email, name] =data;
-    let newUser = await db.User.create({
+    console.log(const_data)
+    let data = [reference, amount, email, name];
+    let newUser = db.User.create({
       name: name,
-      email: email,
+      email: data.email,
       amount: amount,
       reference: reference
     })
     if(newUser){
       res.redirect('/receipt/'+user._id)
     }
-  }).catch((err) =>{
-    res.redirect('/error')
   })
+  }
+  catch(error) {
+    console.log(error)
+    res.redirect('/error')
+  }
 });
 
 app.get('/reciept/:id', async(req, res) => {

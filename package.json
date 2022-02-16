@@ -14,6 +14,7 @@
   "author": "Obidike Uchenna",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.1",
     "dotenv": "^16.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.2",

@@ -6,23 +6,25 @@ const paystack = (request) => {
     const options = {
       url: 'https://api.paystack.co/transaction/initialize',
       headers: {
-        authorization: mySecretKey,
+      "Authorization": "Bearer sk_test_760af0739931b4a3af98ea3069dbd294e5a27987",
+        // "Authorization":"Bearer [mySecretKey]",
         "content-type":'ápplication/json',
         'cache-control': 'non-cache' 
       },
       form
     }
     const callback = (error, response, body) =>{
-      return mycallback(error.body)
+      return mycallback(error, body)
     }
     request.post(options, callback)
   }
 
-  const verifyPayment = (ref, mycallback) => {
+  const verifyPayment = async(ref, mycallback) => {
     const options = {
-      url : 'https://api.paystack.co/transaction/verify/'+encodeURIComponent(ref    ),
+      url : 'https://api.paystack.co/transaction/verify/:reference',
       headers : {
-        authorization: mySecretKey,
+        "Authorization": "Bearer sk_test_760af0739931b4a3af98ea3069dbd294e5a27987",
+        // authorization: mySecretKey,
         'content-type': 'application/json',
         'cache-control': 'no-cache'
       }
@@ -30,7 +32,7 @@ const paystack = (request) => {
     const callback = (error, response, body)=>{
       return mycallback(error, body);
     }
-    request(options,callback);
+    request(options, callback);
   }
 
   return {initializePayment, verifyPayment}
